@@ -1,0 +1,23 @@
+allprojects {
+    apply plugin: 'java'
+
+    group = 'org.home.spring'
+    version = '1.0.0'
+
+    targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'org.springframework:spring-core:4.2.2.RELEASE'
+        compile 'org.springframework:spring-context:4.2.2.RELEASE'
+
+        testCompile 'org.springframework:spring-test:4.2.2.RELEASE'
+        testCompile 'junit:junit:4.12'
+        testCompile 'org.assertj:assertj-core:3.2.0'
+        testCompile 'com.github.stefanbirkner:system-rules:1.13.0'
+    }
+}
