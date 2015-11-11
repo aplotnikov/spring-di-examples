@@ -25,41 +25,67 @@ public class CompactDiskBoxTest {
 
     @Test
     public void shouldInstanceBeSingletonByDefault() throws Exception {
-        assertThat(diskBox.getSqtPeppersDisk()).isEqualTo(mediaPlayer.getInsertedDisk());
+        assertThat(diskBox.sgtPeppersDisk).isEqualTo(mediaPlayer.getInsertedDisk());
     }
 
     @Test
     public void shouldRussianDiskBeInjectedByBeanName() throws Exception {
-        assertThat(diskBox.getRussianDisk()).isInstanceOf(RussianSongs.class);
+        assertThat(diskBox.russianDisk).isInstanceOf(RussianSongs.class);
+    }
+
+    @Test
+    public void shouldSpecialRussianDiskBeInjectedByBeanNameFromConfigurationClass() throws Exception {
+        assertThat(diskBox.specialRussianDisk).isInstanceOf(RussianSongs.class);
+        assertThat(diskBox.specialRussianDisk).isNotEqualTo(diskBox.russianDisk);
     }
 
     @Test
     public void shouldJapaneseDiskBeInjectedByBeanName() throws Exception {
-        assertThat(diskBox.getJapaneseDisk()).isInstanceOf(JapaneseSongs.class);
+        assertThat(diskBox.japaneseDisk).isInstanceOf(JapaneseSongs.class);
+    }
+
+    @Test
+    public void shouldSpecialJapaneseDiskBeInjectedByBeanNameFromConfigurationClass() throws Exception {
+        assertThat(diskBox.specialJapaneseDisk).isInstanceOf(JapaneseSongs.class);
+        assertThat(diskBox.specialJapaneseDisk).isEqualTo(diskBox.japaneseDisk);
     }
 
     @Test
     public void shouldAmericanDiskBeInjectedByBeanName() throws Exception {
-        assertThat(diskBox.getAmericanDisk()).isInstanceOf(AmericanSongs.class);
+        assertThat(diskBox.americanDisk).isInstanceOf(AmericanSongs.class);
     }
 
     @Test
     public void shouldUkrainianDiskBeInjectedByBeanName() throws Exception {
-        assertThat(diskBox.getUkrainianSongs()).isInstanceOf(UkrainianSongs.class);
+        assertThat(diskBox.ukrainianSongs).isInstanceOf(UkrainianSongs.class);
+    }
+
+    @Test
+    public void shouldSpecialUkrainianDiskBeInjectedByBeanNameFromConfigurationClass() throws Exception {
+        assertThat(diskBox.specialUkrainianSongs).isInstanceOf(UkrainianSongs.class);
+        assertThat(diskBox.specialUkrainianSongs).isNotEqualTo(diskBox.ukrainianSongs);
+    }
+
+    @Test
+    public void shouldTheSameSpecialUkrainianDiskInstanceBeInjectedByBeanNameFromConfigurationClass() throws Exception {
+        assertThat(diskBox.specialUkrainianSongs).isInstanceOf(UkrainianSongs.class);
+        assertThat(diskBox.anotherSpecialUkrainianSongs).isInstanceOf(UkrainianSongs.class);
+
+        assertThat(diskBox.specialUkrainianSongs).isEqualTo(diskBox.anotherSpecialUkrainianSongs);
     }
 
     @Test
     public void shouldAllDiskBeInjectedByMarkerInterface() throws Exception {
-        assertThat(diskBox.getAllDisks())
+        assertThat(diskBox.allDisks)
                 .containsAll(
                         asList(
-                                diskBox.getAmericanDisk(),
-                                diskBox.getJapaneseDisk(),
-                                diskBox.getRussianDisk(),
-                                diskBox.getSqtPeppersDisk(),
-                                diskBox.getUkrainianSongs()
+                                diskBox.americanDisk,
+                                diskBox.japaneseDisk,
+                                diskBox.russianDisk,
+                                diskBox.sgtPeppersDisk,
+                                diskBox.ukrainianSongs
                               )
                             )
-                .hasSize(5);
+                .hasSize(8);
     }
 }

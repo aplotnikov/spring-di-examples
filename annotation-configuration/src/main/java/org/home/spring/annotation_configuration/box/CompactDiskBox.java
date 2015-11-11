@@ -13,60 +13,47 @@ import java.util.List;
 
 @Component
 public class CompactDiskBox {
-    private SgtPeppers        sqtPeppersDisk;
-    private UkrainianSongs    ukrainianSongs;
-    private CompactDisk       russianDisk;
-    private CompactDisk       americanDisk;
-    private CompactDisk       japaneseDisk;
-    @Autowired
-    private List<CompactDisk> allDisks;
+    public SgtPeppers     sgtPeppersDisk;
+    public UkrainianSongs ukrainianSongs;
 
     @Autowired
-    public void setSqtPeppersDisk(SgtPeppers sqtPeppersDisk) {
-        this.sqtPeppersDisk = sqtPeppersDisk;
+    @Qualifier("russianDisk")
+    public CompactDisk russianDisk;
+
+    @Autowired
+    @Qualifier("myRussianDisk")
+    public CompactDisk specialRussianDisk;
+
+    @Autowired
+    @Qualifier("americanDisk")
+    public CompactDisk americanDisk;
+
+    @Inject
+    @Named("japaneseDisk")
+    public CompactDisk japaneseDisk;
+
+    @Inject
+    @Named("myJapaneseDisk")
+    public CompactDisk specialJapaneseDisk;
+
+    @Inject
+    @Named("anUkrainianDisk")
+    public CompactDisk specialUkrainianSongs;
+
+    @Inject
+    @Named("anUkrainianDisk")
+    public CompactDisk anotherSpecialUkrainianSongs;
+
+    @Autowired
+    public List<CompactDisk> allDisks;
+
+    @Autowired
+    public void setSgtPeppersDisk(SgtPeppers sgtPeppersDisk) {
+        this.sgtPeppersDisk = sgtPeppersDisk;
     }
 
     @Autowired
     public void insertUkrainianSongs(UkrainianSongs ukrainianSongs) {
         this.ukrainianSongs = ukrainianSongs;
-    }
-
-    @Inject
-    public void insertJapaneseSongs(@Named("japaneseDisk") CompactDisk japaneseDisk) {
-        this.japaneseDisk = japaneseDisk;
-    }
-
-    @Autowired
-    public void insertRussianSongs(@Qualifier("russianDisk") CompactDisk russianDisk) {
-        this.russianDisk = russianDisk;
-    }
-
-    @Autowired
-    public void insertAmericanSongs(@Qualifier("americanDisk") CompactDisk americanDisk) {
-        this.americanDisk = americanDisk;
-    }
-
-    public SgtPeppers getSqtPeppersDisk() {
-        return sqtPeppersDisk;
-    }
-
-    public UkrainianSongs getUkrainianSongs() {
-        return ukrainianSongs;
-    }
-
-    public CompactDisk getRussianDisk() {
-        return russianDisk;
-    }
-
-    public CompactDisk getAmericanDisk() {
-        return americanDisk;
-    }
-
-    public CompactDisk getJapaneseDisk() {
-        return japaneseDisk;
-    }
-
-    public List<CompactDisk> getAllDisks() {
-        return allDisks;
     }
 }
