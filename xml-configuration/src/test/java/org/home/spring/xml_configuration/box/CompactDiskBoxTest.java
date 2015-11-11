@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/beans.xml")
+@ContextConfiguration("classpath:beans.xml")
 public class CompactDiskBoxTest {
     @Autowired
     private CompactDiskBox diskBox;
