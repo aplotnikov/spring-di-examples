@@ -16,6 +16,7 @@ allprojects {
         compile 'org.springframework:spring-context:4.2.2.RELEASE'
         compile 'javax.inject:javax.inject:1'
         compile 'edu.washington.cs.types.checker:checker-framework:1.7.0'
+        compile 'com.google.guava:guava:18.0'
 
         testCompile 'org.springframework:spring-test:4.2.2.RELEASE'
         testCompile 'junit:junit:4.12'

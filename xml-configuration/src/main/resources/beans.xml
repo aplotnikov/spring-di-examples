@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="org.home.spring.xml_configuration"/>
+
+    <bean id="sgtPeppers" class="org.home.spring.xml_configuration.disk.SgtPeppers"/>
+    <bean id="americanSongs" class="org.home.spring.xml_configuration.disk.AmericanSongs"/>
+    <bean id="chineseSongs" class="org.home.spring.xml_configuration.disk.ChineseSongs" scope="prototype"/>
+    <bean id="japaneseSongs" class="org.home.spring.xml_configuration.disk.JapaneseSongs"/>
+    <bean id="russianSongs" class="org.home.spring.xml_configuration.disk.RussianSongs"/>
+    <bean id="ukrainianSongs" class="org.home.spring.xml_configuration.disk.UkrainianSongs"/>
+
+    <bean class="org.home.spring.xml_configuration.player.CDPlayer">
+        <constructor-arg name="disk" ref="sgtPeppers"/>
+    </bean>
+
+    <bean id="compactDiskBox" class="org.home.spring.xml_configuration.box.CompactDiskBox"
+          p:sgtPeppersDisk-ref="sgtPeppers"
+          p:americanDisk-ref="americanSongs"
+          p:chineseSongs-ref="chineseSongs">
+        <property name="ukrainianSongs" ref="ukrainianSongs"/>
+        <property name="russianDisk" ref="russianSongs"/>
+        <property name="japaneseDisk" ref="japaneseSongs"/>
+        <property name="specialChineseSongs" ref="chineseSongs"/>
+    </bean>
+
+    <util:constant id="constantName" static-field="org.home.spring.xml_configuration.pc.Computer.NAME"/>
+
+    <bean class="org.home.spring.xml_configuration.pc.Computer">
+        <property name="name" ref="constantName"/>
+
+        <property name="names">
+            <util:list>
+                <value>Name1</value>
+                <value>Name2</value>
+                <value>Name3</value>
+            </util:list>
+        </property>
+
+        <property name="mappedNames">
+            <util:map>
+                <entry key="Name" value="Value1"/>
+            </util:map>
+        </property>
+
+        <property name="scopes">
+            <util:set>
+                <value>Singleton</value>
+                <value>Prototype</value>
+            </util:set>
+        </property>
+    </bean>
+
+</beans>
