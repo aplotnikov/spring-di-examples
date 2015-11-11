@@ -1,24 +1,36 @@
 package org.home.spring.annotation_configuration;
 
+import org.home.spring.annotation_configuration.player.CDPlayer;
 import org.home.spring.annotation_configuration.player.MediaPlayer;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = CDPlayerConfig.class)
 public class CDPlayerTest {
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 
-    @Autowired
-    private MediaPlayer player;
+    private AbstractApplicationContext context;
+    private MediaPlayer                player;
+
+    @Before
+    public void setUp() throws Exception {
+        context = new AnnotationConfigApplicationContext(CDPlayerConfig.class);
+        player = context.getBean(CDPlayer.class);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        if (context != null) {
+            context.close();
+        }
+    }
 
     @Test
     public void shouldBeNotNullInjectedInstance() {

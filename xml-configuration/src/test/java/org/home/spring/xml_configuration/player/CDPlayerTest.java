@@ -1,23 +1,35 @@
 package org.home.spring.xml_configuration.player;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/beans.xml")
 public class CDPlayerTest {
     @Rule
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 
-    @Autowired
-    private MediaPlayer player;
+    private AbstractApplicationContext context;
+    private MediaPlayer                player;
+
+    @Before
+    public void setUp() throws Exception {
+        //context = new FileSystemXmlApplicationContext("src/main/resources/beans.xml");
+        context = new ClassPathXmlApplicationContext("beans.xml");
+        player = context.getBean(MediaPlayer.class);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        if (context != null) {
+            context.close();
+        }
+    }
 
     @Test
     public void shouldBeNotNullInjectedInstance() {
