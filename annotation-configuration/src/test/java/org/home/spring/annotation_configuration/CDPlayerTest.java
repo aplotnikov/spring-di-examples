@@ -1,6 +1,6 @@
 package org.home.spring.annotation_configuration;
 
-import org.home.spring.annotation_configuration.disk.CompactDisk;
+import org.home.spring.annotation_configuration.player.MediaPlayer;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -18,16 +18,16 @@ public class CDPlayerTest {
     public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 
     @Autowired
-    private CompactDisk cd;
+    private MediaPlayer player;
 
     @Test
     public void shouldBeNotNullInjectedInstance() {
-        assertThat(cd).isNotNull();
+        assertThat(player).isNotNull();
     }
 
     @Test
     public void shouldSpecialMessageBeGenerated() throws Exception {
-        cd.play();
+        player.play();
 
         assertThat(systemOutRule.getLog()).isEqualTo("Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles");
     }

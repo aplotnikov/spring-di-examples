@@ -4,17 +4,17 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 
-@Component
-public class SgtPeppers implements CompactDisk {
+@Component(value = "russianDisk")
+public class RussianSongs implements CompactDisk {
     @Override
     @Nonnull
     public String getTitle() {
-        return "Sgt. Pepper's Lonely Hearts Club Band";
+        return "Russian songs";
     }
 
     @Override
     @Nonnull
     public String getArtist() {
-        return "The Beatles";
+        return "Serebro";
     }
 }

@@ -1,20 +1,22 @@
 package org.home.spring.annotation_configuration.disk;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 
 @Component
-public class SgtPeppers implements CompactDisk {
+@Qualifier("americanDisk")
+public class AmericanSongs implements CompactDisk {
     @Override
     @Nonnull
     public String getTitle() {
-        return "Sgt. Pepper's Lonely Hearts Club Band";
+        return "American songs";
     }
 
     @Override
     @Nonnull
     public String getArtist() {
-        return "The Beatles";
+        return "Riahana";
     }
 }

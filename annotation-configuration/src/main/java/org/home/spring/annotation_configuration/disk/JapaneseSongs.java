@@ -1,20 +1,19 @@
 package org.home.spring.annotation_configuration.disk;
 
-import org.springframework.stereotype.Component;
-
 import javax.annotation.Nonnull;
+import javax.inject.Named;
 
-@Component
-public class SgtPeppers implements CompactDisk {
+@Named("japaneseDisk")
+public class JapaneseSongs implements CompactDisk {
     @Override
     @Nonnull
     public String getTitle() {
-        return "Sgt. Pepper's Lonely Hearts Club Band";
+        return "Japanese songs";
     }
 
     @Override
     @Nonnull
     public String getArtist() {
-        return "The Beatles";
+        return "Japanese artist";
     }
 }
