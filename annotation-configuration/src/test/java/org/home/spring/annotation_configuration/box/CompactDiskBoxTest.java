@@ -2,6 +2,7 @@ package org.home.spring.annotation_configuration.box;
 
 import org.home.spring.annotation_configuration.CDPlayerConfig;
 import org.home.spring.annotation_configuration.disk.AmericanSongs;
+import org.home.spring.annotation_configuration.disk.ChineseSongs;
 import org.home.spring.annotation_configuration.disk.JapaneseSongs;
 import org.home.spring.annotation_configuration.disk.RussianSongs;
 import org.home.spring.annotation_configuration.disk.UkrainianSongs;
@@ -75,17 +76,32 @@ public class CompactDiskBoxTest {
     }
 
     @Test
+    public void shouldTheDifferentChineseDiskInstancesBeInjectedWhenScopeIsPrototype() throws Exception {
+        assertThat(diskBox.chineseSongs).isInstanceOf(ChineseSongs.class);
+        assertThat(diskBox.specialChineseSongs).isInstanceOf(ChineseSongs.class);
+
+        assertThat(diskBox.chineseSongs).isNotEqualTo(diskBox.specialChineseSongs);
+    }
+
+    @Test
     public void shouldAllDiskBeInjectedByMarkerInterface() throws Exception {
         assertThat(diskBox.allDisks)
                 .containsAll(
                         asList(
                                 diskBox.americanDisk,
-                                diskBox.japaneseDisk,
-                                diskBox.russianDisk,
                                 diskBox.sgtPeppersDisk,
-                                diskBox.ukrainianSongs
+
+                                diskBox.japaneseDisk,
+                                diskBox.specialJapaneseDisk,
+
+                                diskBox.russianDisk,
+                                diskBox.specialRussianDisk,
+
+                                diskBox.ukrainianSongs,
+                                diskBox.specialUkrainianSongs
                               )
                             )
-                .hasSize(8);
+                .hasAtLeastOneElementOfType(ChineseSongs.class)
+                .hasSize(9);
     }
 }

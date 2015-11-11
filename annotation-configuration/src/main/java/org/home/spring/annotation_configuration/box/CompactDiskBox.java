@@ -44,6 +44,14 @@ public class CompactDiskBox {
     @Named("anUkrainianDisk")
     public CompactDisk anotherSpecialUkrainianSongs;
 
+    @Inject
+    @Named("chineseSongs")
+    public CompactDisk chineseSongs;
+
+    @Inject
+    @Named("chineseSongs")
+    public CompactDisk specialChineseSongs;
+
     @Autowired
     public List<CompactDisk> allDisks;
 
