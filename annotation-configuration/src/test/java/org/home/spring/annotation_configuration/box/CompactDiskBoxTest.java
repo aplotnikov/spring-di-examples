@@ -3,6 +3,7 @@ package org.home.spring.annotation_configuration.box;
 import org.home.spring.annotation_configuration.CDPlayerConfig;
 import org.home.spring.annotation_configuration.disk.AmericanSongs;
 import org.home.spring.annotation_configuration.disk.ChineseSongs;
+import org.home.spring.annotation_configuration.disk.IndianSongs;
 import org.home.spring.annotation_configuration.disk.JapaneseSongs;
 import org.home.spring.annotation_configuration.disk.RussianSongs;
 import org.home.spring.annotation_configuration.disk.UkrainianSongs;
@@ -102,6 +103,7 @@ public class CompactDiskBoxTest {
                               )
                             )
                 .hasAtLeastOneElementOfType(ChineseSongs.class)
-                .hasSize(9);
+                .hasAtLeastOneElementOfType(IndianSongs.class)
+                .hasSize(10);
     }
 }
