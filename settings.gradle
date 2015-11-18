@@ -1,1 +1,4 @@
-include 'annotation-configuration', 'xml-configuration'
+include 'annotation-configuration'
+include 'xml-configuration'
+include 'mixed-configuration-xml-in-annotation'
+include 'mixed-configuration-annotation-in-xml'
