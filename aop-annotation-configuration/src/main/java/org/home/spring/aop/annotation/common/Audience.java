@@ -1,4 +1,4 @@
-package org.home.spring.aop.annotation;
+package org.home.spring.aop.annotation.common;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;

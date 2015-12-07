@@ -1,9 +1,9 @@
-package org.home.spring.aop.annotation;
+package org.home.spring.aop.annotation.common;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class AroundPerformance {
+public class Performance {
     public void perform() {
         System.out.println("Performance");
     }
