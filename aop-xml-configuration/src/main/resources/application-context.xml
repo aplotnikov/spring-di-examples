@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy/>
+
+    <bean class="org.home.spring.aop.xml.common.Performance"/>
+    <bean id="audience" class="org.home.spring.aop.xml.common.Audience"/>
+
+    <aop:config>
+        <aop:aspect ref="audience">
+            <aop:pointcut id="performance" expression="execution(* org.home.spring.aop.xml.common.Performance.perform(..))"/>
+
+            <aop:before pointcut-ref="performance" method="silenceCellPhones"/>
+            <aop:before pointcut-ref="performance" method="takeSeats"/>
+            <aop:after-returning pointcut-ref="performance" method="applause"/>
+            <aop:after-throwing pointcut-ref="performance" method="demandRefund"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean class="org.home.spring.aop.xml.around.AroundPerformance"/>
+    <bean id="aroundAudience" class="org.home.spring.aop.xml.around.AroundAudience"/>
+
+    <aop:config>
+        <aop:aspect ref="aroundAudience">
+            <aop:pointcut id="aroundPerformance" expression="execution(* org.home.spring.aop.xml.around.AroundPerformance.perform(..))"/>
+
+            <aop:around pointcut-ref="aroundPerformance" method="watchPerformance"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean class="org.home.spring.aop.xml.param.ParamPerformance"/>
+    <bean id="paramAudience" class="org.home.spring.aop.xml.param.ParamAudience"/>
+
+    <aop:config>
+        <aop:aspect ref="paramAudience">
+            <aop:pointcut id="trackPlayed"
+                          expression="execution(* org.home.spring.aop.xml.param.ParamPerformance.playTrack(int)) and args(trackNumber)"/>
+
+            <aop:before pointcut-ref="trackPlayed" method="countTrack" arg-names="trackNumber"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
