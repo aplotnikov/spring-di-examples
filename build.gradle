@@ -32,3 +32,11 @@ project(':aop-annotation-configuration') {
         compile "org.aspectj:aspectjweaver:${aspectjVersion}"
     }
 }
+
+project(':aop-xml-configuration') {
+    dependencies {
+        compile "org.springframework:spring-aop:${springframeworkVersion}"
+        compile "org.aspectj:aspectjrt:${aspectjVersion}"
+        compile "org.aspectj:aspectjweaver:${aspectjVersion}"
+    }
+}
