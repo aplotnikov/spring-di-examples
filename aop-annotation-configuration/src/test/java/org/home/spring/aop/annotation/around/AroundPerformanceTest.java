@@ -1,6 +1,6 @@
-package org.home.spring.aop.annotation;
+package org.home.spring.aop.annotation.around;
 
-import org.home.spring.aop.annotation.around.AroundPerformance;
+import org.home.spring.aop.annotation.PerformanceConfiguration;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
