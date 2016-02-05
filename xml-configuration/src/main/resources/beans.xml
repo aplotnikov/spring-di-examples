@@ -65,4 +65,12 @@
     <bean id="newDisk" class="org.home.spring.xml_configuration.disk.DiskFactory">
         <lookup-method bean="chineseSongs" name="aCompactDisk"/>
     </bean>
+
+    <bean id="diskFactory" class="org.home.spring.xml_configuration.disk.CustomDiskFactory"/>
+    <bean id="americanDisk" class="org.home.spring.xml_configuration.disk.CompactDisk" factory-bean="diskFactory" factory-method="aCompactDisk">
+        <constructor-arg name="diskType" value="AMERICAN"/>
+    </bean>
+    <bean id="ukrainianDisk" class="org.home.spring.xml_configuration.disk.CompactDisk" factory-bean="diskFactory" factory-method="aCompactDisk">
+        <constructor-arg name="diskType" value="UKRAINIAN"/>
+    </bean>
 </beans>
