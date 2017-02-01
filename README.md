@@ -1,5 +1,7 @@
 #Spring Dependency Injection Examples
 
+[![CircleCI](https://circleci.com/gh/aplotnikov/spring-di-examples.svg?style=svg)](https://circleci.com/gh/aplotnikov/spring-di-examples)
+
 The project contains examples of using dependency injection of Spring. It contains examples of different types of configuration:
 
 * xml
